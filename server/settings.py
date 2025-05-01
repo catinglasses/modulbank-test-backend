@@ -34,7 +34,7 @@ class Settings(BaseSettings):
         return values
 
     class Config:
-        env_file = ".env"
+        env_file = "../.env"
 
 try:
     settings = Settings()

@@ -1,7 +1,10 @@
+from fastapi import Depends
 from sqlalchemy import select, func
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from server.schemas import MessageCreate
+from server.models.database import get_db
 from server.models.message import Message
 
 class MessageService:
@@ -32,7 +35,7 @@ class MessageService:
 
     async def create_message(self, message_create: MessageCreate) -> Message:
         async with self.db_session.begin():
-            serial_number = await self._get_next_serial_number
+            serial_number = await self._get_next_serial_number()
             user_count = await self._get_user_message_count(message_create.sender) + 1
 
             message = Message(
@@ -49,5 +52,9 @@ class MessageService:
                 await self.db_session.rollback()
                 raise ValueError("Failed to create message due to conflict") from e
             
-            messages = await self.get_last_messages(10)
-            return messages
+            return message
+
+async def get_message_service(
+        db: AsyncSession = Depends(get_db)
+) -> MessageService:
+    return MessageService(db)
