@@ -1,9 +1,16 @@
 from fastapi import FastAPI, Depends, HTTPException
+from contextlib import asynccontextmanager
 
 from server.schemas import MessageCreate, MessageResponse
+from server.models.database import init_db
 from server.service import MessageService, get_message_service
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_db()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 @app.post("/create-message", response_model=list[MessageResponse])
 async def create_message(
