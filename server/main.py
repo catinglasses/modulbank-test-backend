@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Depends, HTTPException
 from contextlib import asynccontextmanager
+from fastapi import FastAPI, Depends, HTTPException
 
-from server.schemas import MessageCreate, MessageResponse
 from server.models.database import init_db
+from server.schemas import MessageCreate, MessageResponse
 from server.service import MessageService, get_message_service
 
 @asynccontextmanager
