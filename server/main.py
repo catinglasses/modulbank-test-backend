@@ -1,16 +1,17 @@
-from contextlib import asynccontextmanager
+# from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, HTTPException
 
-from server.models.database import init_db
+# from server.models.database import init_db
 from server.schemas import MessageCreate, MessageResponse
 from server.service import MessageService, get_message_service
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await init_db()
-    yield
+# DEPRECATED after using docker & docker-compose
+# @asynccontextmanager
+# async def lifespan(app: FastAPI):
+#     await init_db()
+#     yield
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 @app.post("/create-message", response_model=list[MessageResponse])
 async def create_message(

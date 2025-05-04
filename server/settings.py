@@ -30,7 +30,7 @@ class Settings(BaseSettings):
                 raise ValueError("Missing database connection params.")
         except Exception as e:
             raise ValueError(f"Error constructing DATABASE_URL: {e}")
-        
+
         return values
 
     class Config:

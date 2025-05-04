@@ -5,8 +5,8 @@ import logging
 from service import AsyncRequestSender
 
 SERVER_URLS = [
-    "http://127.0.0.1:80",
-    "http://127.0.0.1:81",
+    "http://127.0.0.1:8000",
+    "http://127.0.0.1:8001",
 ]
 
 USER_NAMES = [
