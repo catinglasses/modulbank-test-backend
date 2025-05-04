@@ -12,7 +12,8 @@
     cd modulbank-test-backend
     ```
 
-3. Для корректной работы кода необходимо создать переменную окружения (.env) на уровне проекта (/modulbank-test-backend), где хранятся данные для подключения к БД. Ниже представлен пример моего .env.
+3. Для корректной работы кода необходимо создать переменную окружения (`.env`) на уровне проекта (`/modulbank-test-backend`), где хранятся данные для подключения к БД.  
+   Ниже представлен пример моего .env.
    ```
    DB_HOST=postgres
    DB_PORT=5432
@@ -41,7 +42,7 @@
     docker compose up --build
     ```
 
-7. (ВАЖНО: при работе на Windows-системе исполнять команду в cmd, не Git Bash, т.к. [последний работает некорректно с путями](https://stackoverflow.com/questions/76505589/docker-exec-workdir-does-not-work-in-git-bash).)
+7. (ВАЖНО: при работе на Windows-системе исполнять команду в `cmd`, не `Git Bash`, т.к. [последний работает некорректно с путями](https://stackoverflow.com/questions/76505589/docker-exec-workdir-does-not-work-in-git-bash).)  
     Миграции базы данных :
     ```sh
     docker exec -w /app/server -it modulbank-test-backend-fastapi-1-1 alembic upgrade head
@@ -52,7 +53,7 @@
     python client/main.py
     ```
 
-Пример итогов работы client/main.py:
+Пример итогов работы `client/main.py`:
 ```sh
 INFO - ==========  |   RESULTS   |  ==========
 INFO - Total time: 50.88 s
